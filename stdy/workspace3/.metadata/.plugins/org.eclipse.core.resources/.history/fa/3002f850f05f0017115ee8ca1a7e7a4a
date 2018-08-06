@@ -1,0 +1,27 @@
+package com.jdk8.crypto.provider;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.Provider;
+
+public class MyProvider {
+
+	
+	public MyProvider() {
+	} 
+	
+	public MessageDigest getProvider(String algorithm, String provider){
+		try {
+			return MessageDigest.getInstance(algorithm, provider);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchProviderException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+}

@@ -1,0 +1,10 @@
+package com.jdk8.crypto;
+
+import com.jdk8.crypto.provider.MyProvider;
+
+public class MainClass {
+
+	public MainClass() {
+		MyProvider  myProvider = new MyProvider(); 
+	}
+}

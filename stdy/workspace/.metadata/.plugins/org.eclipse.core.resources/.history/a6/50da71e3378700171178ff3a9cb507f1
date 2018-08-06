@@ -1,0 +1,5 @@
+package com.multithread.dinkedblockingdeque;
+
+public class LinkedBlockingDequeMain {
+
+}

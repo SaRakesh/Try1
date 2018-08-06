@@ -1,0 +1,11 @@
+package com.multithread.dinkedblockingdeque;
+
+public class LinkedBlockingDequeConsumer implements Runnable{
+
+	@Override
+	public void run() {
+		
+		
+	}
+
+}

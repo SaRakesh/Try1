@@ -1,0 +1,84 @@
+package com.multithread.try1;
+
+public class BasicMultiThreading {
+
+	final private Object obj = new Object();
+
+	public static void main(String[] args) throws Exception {
+		BasicMultiThreading instance = new BasicMultiThreading();
+		instance.process();
+	}
+
+	public void process() throws Exception {
+		Thread threadOne = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				synchronized (obj) {
+					for (int i = 2; i < 13; i = i + 3) {
+
+						System.out.println("count = " + i);
+						obj.notify();
+						try {
+							 Thread.sleep(1000);
+							obj.wait();
+						} catch (InterruptedException e) {
+							System.out.println(e.getMessage());
+							e.printStackTrace();
+						}
+					}
+				}
+				System.out.println("Even done");
+
+			}
+		});
+		Thread threadTwo = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				synchronized (obj) {
+					for (int i = 1; i < 12; i = i + 3) {
+
+						System.out.println("count = " + i);
+						obj.notify();
+						try {
+							obj.wait();
+						} catch (InterruptedException e) {
+							System.out.println(e.getMessage());
+							e.printStackTrace();
+						}
+					}
+				}
+				System.out.println("old done");
+//				obj.notifyAll();
+
+			}
+		});
+		
+		Thread threadThree = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				synchronized (obj) {
+					for (int i = 3; i < 15; i = i + 3) {
+
+						System.out.println("count = " + i);
+						obj.notify();
+						try {
+							 Thread.sleep(1000);
+							obj.wait();
+						} catch (InterruptedException e) {
+							System.out.println(e.getMessage());
+							e.printStackTrace();
+						}
+					}
+				}
+				System.out.println("Even done");
+
+			}
+		});
+		threadTwo.start();
+		 Thread.sleep(1000);
+		threadOne.start();
+	}
+}

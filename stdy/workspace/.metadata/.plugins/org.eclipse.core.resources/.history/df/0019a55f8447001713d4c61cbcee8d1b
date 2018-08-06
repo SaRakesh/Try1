@@ -1,0 +1,88 @@
+package com.medsurge.china.dir;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class FileComparatorInDirectory {
+
+	private static String absolutePath = "E:/test/a";
+	public static void main(String[] args) {
+		try {
+			List<File> listSrc = new ArrayList<>();
+			Map<String, File> mapDest = new HashMap<String, File>();
+			File dirSrc = new File("E:/test/a");
+			File dirDest = new File("E:/test/b");
+			File[] dirListSrc = dirSrc.listFiles();
+			File[] dirListDest = dirDest.listFiles();
+			for (File f : dirListSrc) {
+				if (f.isDirectory()) {
+					if (isFileOrDirectoryPresent(f, dirListDest) != null) {
+						listSrc.add(f);
+						mapDest.put(getAbsolutePath(f.getAbsolutePath()), isFileOrDirectoryPresent(f, dirListDest));
+					} else {
+						printMessage("Directory missing " + f.getName());
+					}
+				} else {
+					if (isFileOrDirectoryPresent(f, dirListDest) == null) {
+						printMessage("File missing " + f.getName());
+					}
+				}
+			}
+
+			while (listSrc.size() > 0) {
+				File fi1 = listSrc.remove(0);
+				dirListSrc = fi1.listFiles();
+				File fi2 = mapDest.remove(getAbsolutePath(fi1.getAbsolutePath()));
+				dirListDest = fi2.listFiles();
+
+				for (File f : dirListSrc) {
+					if (f.isDirectory()) {
+						if (isFileOrDirectoryPresent(f, dirListDest) != null) {
+							listSrc.add(f);
+							mapDest.put(getAbsolutePath(f.getAbsolutePath()), isFileOrDirectoryPresent(f, dirListDest));
+						} else {
+							printMessage("Directory missing " + f.getName());
+						}
+					} else {
+						if (isFileOrDirectoryPresent(f, dirListDest) == null) {
+							printMessage("File missing " + f.getName());
+						}
+					}
+				}
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+	private static void printMessage(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static String getAbsolutePath(String absolutePath2) {
+		return absolutePath2.replaceFirst(absolutePath, "");
+	}
+
+	private static File isFileOrDirectoryPresent(File f, File[] dirListDest) {
+		File result = null;
+		for(File s : dirListDest){
+			if(f.isDirectory() && s.isDirectory()&&(f.getName().endsWith(s.getName()))){
+				result = s;
+				break;
+			}else if(f.isFile() && s.isFile() &&(f.getName().endsWith(s.getName()))){
+				result = s;
+				break;
+			}
+		}
+		return result;
+	}
+
+}

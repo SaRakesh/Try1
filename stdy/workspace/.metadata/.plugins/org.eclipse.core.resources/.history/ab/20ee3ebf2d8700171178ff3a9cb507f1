@@ -1,0 +1,11 @@
+package com.multithread.linkedblockingqueue;
+
+public class LinkedBlockingQueueConsumer implements Runnable {
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

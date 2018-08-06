@@ -1,0 +1,19 @@
+package com.multithread.dinkedblockingdeque;
+
+import java.util.concurrent.BlockingDeque;
+
+public class LinkedBlockingDequeConsumer implements Runnable{
+
+	private BlockingDeque<String> blockingDeque;
+
+	public LinkedBlockingDequeConsumer(BlockingDeque<String> blockingDeque) {
+		this.blockingDeque = blockingDeque;
+	}
+
+	@Override
+	public void run() {
+		
+		
+	}
+
+}

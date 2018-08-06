@@ -1,0 +1,18 @@
+package com.medsurge.china.dir;
+
+import java.io.File;
+
+public class FileComparatorInDirectory {
+
+	public static void main(String[] args) {
+		try {
+			File dir1 = new File("D:/intermediate/sibelius_deploy/ScormPlayer/course/htmldeploy/sounds/en_AU");
+			File dir2 = new File("D:/intermediate/sibelius_deploy/ScormPlayer/course/htmldeploy/sounds/en_US");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+}

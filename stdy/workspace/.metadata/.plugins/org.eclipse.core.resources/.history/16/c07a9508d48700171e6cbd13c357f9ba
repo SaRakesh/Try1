@@ -1,0 +1,16 @@
+package com.multithread.try1;
+
+import java.util.concurrent.CopyOnWriteArrayList;
+
+public class MyCopyOnWriteArrayList {
+
+	public static void main(String[] args) {
+		MyCopyOnWriteArrayList instance = new MyCopyOnWriteArrayList();
+		instance.kalu();
+	}
+
+	private void kalu() {
+		CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<String>();
+		
+	}
+}

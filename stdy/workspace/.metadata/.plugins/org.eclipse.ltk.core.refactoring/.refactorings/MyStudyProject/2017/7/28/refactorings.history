@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.jdk8.crypto.secretKeyFactory&apos; to &apos;com.jdk8.crypto.key.secretKeyFactory&apos;&#x0D;&#x0A;- Original project: &apos;MyStudyProject&apos;&#x0D;&#x0A;- Original element: &apos;MyStudyProject/src/com.jdk8.crypto.secretKeyFactory&apos;&#x0D;&#x0A;- Renamed element: &apos;MyStudyProject/src/com.jdk8.crypto.key.secretKeyFactory&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.jdk8.crypto.secretKeyFactory&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;com.jdk8.crypto.secretKeyFactory" name="com.jdk8.crypto.key.secretKeyFactory" qualified="false" references="true" stamp="1500009789156" textual="false" version="1.0"/>
+</session>

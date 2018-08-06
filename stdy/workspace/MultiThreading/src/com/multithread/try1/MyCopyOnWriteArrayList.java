@@ -1,0 +1,35 @@
+package com.multithread.try1;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+public class MyCopyOnWriteArrayList {
+
+	public static void main(String[] args) {
+		MyCopyOnWriteArrayList instance = new MyCopyOnWriteArrayList();
+		instance.kalu();
+	}
+
+	private void kalu() {
+		List<Integer> newList = new CopyOnWriteArrayList<Integer>(Arrays.asList(4, 3, 52,12, 23, 34, 45, 56, 67, 78, 89, 91));
+		List<Integer> oldList = new ArrayList<Integer>(Arrays.asList(4, 3, 52,12, 23, 34, 45, 56, 67, 78, 89, 91));
+		for(Integer item : newList) {
+			System.out.println(item);
+			newList.add(1);
+			
+		}
+		System.out.println("length>>"+oldList.size());
+		try {
+			for(Integer item : oldList) {
+				System.out.println(item);
+				oldList.add(1);
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+	}
+}

@@ -1,0 +1,48 @@
+package com.eception;
+
+public class TryBlockSuppressed {
+	public static void main(String[] args) {
+		TryBlockSuppressed instance = new TryBlockSuppressed();
+		instance.process();
+	}
+
+	private void process() {
+		
+		
+	}
+
+}
+class MyAutoCloseables implements AutoCloseable{
+
+	@Override
+	public void close() throws Exception {
+		if(!obj.canClose()) {
+			throw new CanNotCloseException();
+		}
+		System.out.println("Closing...");
+		
+	}
+	
+}
+class CanNotCloseException extends Exception{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8869492281617621629L;
+	public CanNotCloseException() {
+		super();
+	}
+	public CanNotCloseException(String message, Throwable cause, boolean enableSuppression,
+			boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+	public CanNotCloseException(String message, Throwable cause) {
+		super(message, null);
+	}
+	public CanNotCloseException(String message) {
+		super(message);
+	}
+	public CanNotCloseException(Throwable cause) {
+		super();
+	}
+}

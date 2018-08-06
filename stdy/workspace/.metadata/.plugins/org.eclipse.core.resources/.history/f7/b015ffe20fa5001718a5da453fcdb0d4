@@ -1,0 +1,50 @@
+package com.something.code;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SomeClass {
+	private String result = "";
+	private ArrayList<Integer> tempArry = new ArrayList();
+	private String[] number= {"zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty"};
+	private String[] tenths = {"","ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
+	private String[] unit = {"hundred","lakh","cr"};
+	
+
+	public static void main(String[] args) {
+		SomeClass instance = new SomeClass();
+		for (int i = 0; i < 100; i++) {
+			instance.dosomething(i);
+		}
+		
+	}
+
+	private void dosomething(int arg) {
+		Scanner scanner = new Scanner(System.in);
+		long amount = 10;
+		if(arg < -1)
+			 amount = scanner.nextLong();
+		else
+			amount = arg;
+		
+		
+		
+		long amt = amount;
+		
+		while (amt > 0) {
+			int taj = (int) (amt % 100);
+			tempArry.add(taj);
+			amt = amt /100;
+		}
+		for (int i = 0; i < tempArry.size(); i++) {
+			int k = (int) tempArry.get(i);
+			if(k< 20)
+				result = result + " " + number[k];
+			else {
+				result = result +" " + tenths[k/10]+ "" + number[k%10];
+			}
+			System.out.println("result "+ result);
+		}
+		
+	}
+}

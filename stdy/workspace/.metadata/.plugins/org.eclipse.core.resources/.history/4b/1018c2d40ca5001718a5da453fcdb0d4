@@ -1,0 +1,31 @@
+package com.something.code;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SomeClass {
+	
+	private ArrayList<Number> tempArry = new ArrayList<Number>();
+	private String[] number= {"one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty"};
+	private String[] tenths = {"ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
+	private String hundred = "hundred";
+	
+
+	public static void main(String[] args) {
+		SomeClass instance = new SomeClass();
+		instance.dosomething();
+	}
+
+	private void dosomething() {
+		Scanner scanner = new Scanner(System.in);
+		double amount = scanner.nextDouble();
+		double amt = amount;
+		
+		while (amt > 0) {
+			tempArry.add(amt % 100);
+			amt = amt /100;
+		}
+		
+		System.out.println(tempArry);
+	}
+}

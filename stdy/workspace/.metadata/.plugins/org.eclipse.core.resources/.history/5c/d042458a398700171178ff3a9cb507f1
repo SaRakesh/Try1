@@ -1,0 +1,26 @@
+package com.multithread.dinkedblockingdeque;
+
+import java.util.concurrent.BlockingDeque;
+
+public class LinkedBlockingDequeProducer implements Runnable {
+
+	private BlockingDeque<String> blockingDeque;
+
+	public LinkedBlockingDequeProducer(BlockingDeque<String> blockingDeque) {
+		this.blockingDeque = blockingDeque;
+	}
+
+	@Override
+	public void run() {
+		for(int i=0; i< 100; i++) {
+			try {
+				this.blockingDeque.offerFirst("offerFirst "+i);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+}

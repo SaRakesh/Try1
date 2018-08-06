@@ -1,0 +1,24 @@
+package com.eception;
+
+public class TryBlockStudy {
+
+	public static void main(String[] args) throws Exception {
+		TryBlockStudy instance = new TryBlockStudy();
+		instance.process();
+	}
+
+	private void process() {
+		
+		
+	}
+}
+
+class MyAutoCloseable implements AutoCloseable{
+
+	@Override
+	public void close() throws Exception {
+		System.out.println("close function is running...");
+		
+	}
+	
+}

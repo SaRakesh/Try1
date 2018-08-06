@@ -1,0 +1,58 @@
+package com.multithread.try1;
+
+public class BasicMultiThreading {
+
+	final private Object obj = new Object();
+
+	public static void main(String[] args) {
+		BasicMultiThreading instance = new BasicMultiThreading();
+		instance.process();
+	}
+
+	public void process() throws Exception {
+		Thread threadEven = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				for (int i = 2; i <= 10; i = i + 2) {
+					synchronized (obj) {
+						System.out.println("count = " + i);
+						obj.notify();
+						try {
+							obj.wait();
+						} catch (InterruptedException e) {
+							System.out.println(e.getMessage());
+							e.printStackTrace();
+						}
+					}
+				}
+				System.out.println("Even done");
+
+			}
+		});
+		Thread threadOld = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				for (int i = 1; i < 10; i = i + 2) {
+					synchronized (obj) {
+						System.out.println("count = " + i);
+						obj.notify();
+						try {
+							obj.wait();
+						} catch (InterruptedException e) {
+							System.out.println(e.getMessage());
+							e.printStackTrace();
+						}
+					}
+				}
+				System.out.println("old done");
+				obj.notifyAll();
+
+			}
+		});
+		threadOld.start();
+		Thread.sleep(1000);
+		threadEven.start();
+	}
+}

@@ -1,0 +1,14 @@
+package com.medsurge.china.dir;
+
+public class FileComparatorInDirectory {
+
+	public static void main(String[] args) {
+		try {
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+}

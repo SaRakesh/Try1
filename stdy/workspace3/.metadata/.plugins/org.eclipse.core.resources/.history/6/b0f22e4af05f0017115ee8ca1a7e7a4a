@@ -1,0 +1,5 @@
+package com.jdk8.crypto.provider;
+
+public class MyProvider {
+
+}

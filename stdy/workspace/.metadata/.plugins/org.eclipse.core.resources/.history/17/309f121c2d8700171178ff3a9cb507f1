@@ -1,0 +1,5 @@
+package com.multithread.linkedblockingqueue;
+
+public class LinkedBlockingQueueConsumer {
+
+}

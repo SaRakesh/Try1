@@ -1,0 +1,19 @@
+package com.multithread.linkedblockingqueue;
+
+import java.util.concurrent.BlockingQueue;
+
+public class LinkedBlockingQueueConsumer implements Runnable {
+
+	private BlockingQueue<String> blockingQueue;
+
+	public LinkedBlockingQueueConsumer(BlockingQueue<String> blockingQueue) {
+		this.blockingQueue = blockingQueue;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,18 @@
+package com.something.code;
+
+import java.util.Scanner;
+
+public class SomeClass {
+
+	public static void main(String[] args) {
+		SomeClass instance = new SomeClass();
+		instance.dosomething();
+	}
+
+	private void dosomething() {
+		Scanner scanner = new Scanner(System.in);
+		int amount = scanner.nextInt();
+		int length = amount % 10;
+		System.out.println(amount);
+	}
+}

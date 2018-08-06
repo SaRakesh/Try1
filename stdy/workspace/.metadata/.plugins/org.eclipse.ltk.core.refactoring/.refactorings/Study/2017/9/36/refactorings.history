@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;immutablearg&apos; in &apos;com.designpattern.immutable.MyImmutableExample.process()&apos; to &apos;immutableArg1&apos;&#x0D;&#x0A;- Original project: &apos;Study&apos;&#x0D;&#x0A;- Original element: &apos;com.designpattern.immutable.MyImmutableExample.process().immutablearg&apos;&#x0D;&#x0A;- Renamed element: &apos;immutablearg&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;immutablearg&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;com.designpattern.immutable{MyImmutableExample.java[MyImmutableExample~process@immutablearg!235!263!242!253!QString;!0!false" name="immutableArg1" references="true" stamp="1504528297627" version="1.0"/>
+</session>

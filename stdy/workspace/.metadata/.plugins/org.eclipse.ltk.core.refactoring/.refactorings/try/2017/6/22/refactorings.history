@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;listDest&apos; in &apos;com.medsurge.china.dir.FileComparatorInDirectory.main(...)&apos; to &apos;mapDest&apos;&#x0D;&#x0A;- Original project: &apos;try&apos;&#x0D;&#x0A;- Original element: &apos;com.medsurge.china.dir.FileComparatorInDirectory.main(String[]).listDest&apos;&#x0D;&#x0A;- Renamed element: &apos;listDest&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;listDest&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;com.medsurge.china.dir{FileComparatorInDirectory.java[FileComparatorInDirectory~main~\[QString;@listDest!305!361!323!330!QMap\&lt;QString;QFile;&gt;;!0!false" name="mapDest" references="true" stamp="1496393615195" version="1.0"/>
+</session>

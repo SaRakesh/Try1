@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+   <struts>
+   	<constant name="struts.devMode" value="true"></constant>
+   	<package name="loginpag" extends="struts-default">
+   		<action name="login" class="sessionproject.com.structs2.action.login.LoginAction" method="execute">
+   			<result name="success">/Welcome.jsp</result>
+   			<result name="failure">/Input.jsp</result>
+   		</action>
+   	</package>
+   	<package name="resouce" extends="struts-default">
+   		<action name="protectedResouce" class="sessionproject.com.structs2.action.recouces.ProtectedResources" method="execute">
+   			<result name="success">/Resouces.jsp</result>
+   			<result name="failure">/Input.jsp</result>
+   		</action>
+   	</package>
+   </struts>

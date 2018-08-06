@@ -1,0 +1,36 @@
+package com.something.code;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class SomeClass {
+	private String result = "";
+	private ArrayList<Integer> tempArry = new ArrayList();
+	private String[] number= {"one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty"};
+	private String[] tenths = {"ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
+	private String[] unit = {"hundred","lakh","cr"};
+	
+
+	public static void main(String[] args) {
+		SomeClass instance = new SomeClass();
+		instance.dosomething();
+	}
+
+	private void dosomething() {
+		Scanner scanner = new Scanner(System.in);
+		long amount = scanner.nextLong();
+		long amt = amount;
+		
+		while (amt > 0) {
+			int taj = (int) (amt % 100);
+			tempArry.add(taj);
+			amt = amt /100;
+		}
+		for (int i = 0; i < tempArry.size(); i++) {
+			int k = (int) tempArry.get(i);
+			System.out.println(k);
+//			System.out.println(number[(int) tempArry.get(i)]);
+		}
+		
+	}
+}

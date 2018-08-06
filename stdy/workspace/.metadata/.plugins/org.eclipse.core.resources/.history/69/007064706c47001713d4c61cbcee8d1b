@@ -1,0 +1,28 @@
+package com.medsurge.china.dir;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class FileComparatorInDirectory {
+
+	public static void main(String[] args) {
+		try {
+			List<File> listSrc = new ArrayList<>();
+			List<File> listDest = new ArrayList<>();
+			File dirSrc = new File("D:/intermediate/sibelius_deploy/ScormPlayer/course/htmldeploy/sounds/en_AU");
+			File dirDest = new File("D:/intermediate/sibelius_deploy/ScormPlayer/course/htmldeploy/sounds/en_US");
+			File[] dirListSrc = dirSrc.listFiles();
+			File[] dirListDest = dirDest.listFiles();
+			listSrc.addAll(Arrays.asList(dirListSrc));
+			listDest.addAll(Arrays.asList(dirListDest));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+}

@@ -1,0 +1,118 @@
+package com.eception;
+
+import java.util.Random;
+
+public class TryBlockSuppressed {
+	public static void main(String[] args) {
+		TryBlockSuppressed instance = new TryBlockSuppressed();
+		instance.process();
+	}
+
+	private void process() {
+		try(MyAutoCloseables autoCloseables = new MyAutoCloseables(new CommandClass())){
+			autoCloseables.doSometing();
+		}catch (CanNotCloseException e) {
+			System.out.println("catch block of Exception CanNotCloseException...");
+			System.out.println("exception msg  "+e.getMessage());
+			for (Throwable t : e.getSuppressed()) {
+				System.out.println("--- "+t.getMessage());
+			}
+		}catch (AnyException e) {
+			System.out.println("catch block of Exception AnyException...");
+			System.out.println("exception msg  "+e.getMessage());
+			for (Throwable t : e.getSuppressed()) {
+				System.out.println("=== "+t.getMessage());
+			}
+		}
+		catch (Exception e) {
+			System.out.println("catch block of Exception Exception...");
+			System.out.println("exception msg  "+e.getMessage());
+			for (Throwable t : e.getSuppressed()) {
+				System.out.println("+++ "+t.getMessage());
+			}
+		}finally {
+			System.out.println("finally block... ");
+		}
+		
+	}
+
+}
+class MyAutoCloseables implements AutoCloseable{
+
+	private CommandClass cmds;
+
+	public MyAutoCloseables(CommandClass cmds) {
+		super();
+		this.cmds = cmds;
+	}
+
+	public void doSometing() throws AnyException{
+		System.out.println("doSometing function....");
+		throw new AnyException("Exception throw in Try block....");
+		
+	}
+
+	@Override
+	public void close() throws Exception {
+		if(!cmds.canClose()) {
+			throw new CanNotCloseException();
+		}
+		System.out.println("Closing...");
+		
+	}
+	
+}
+class CommandClass{
+	private Random random;
+	public CommandClass() {
+		this.random = new Random();
+	}
+	public boolean canClose() {
+		boolean result = false;
+		if(this.random.nextInt() % 2 == 0 && false) {
+			result = true;
+		}
+		return result;
+	}
+	
+}
+class CanNotCloseException extends Exception{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8869492281617621629L;
+	public CanNotCloseException() {
+		super();
+	}
+	public CanNotCloseException(String message, Throwable cause, boolean enableSuppression,
+			boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+	public CanNotCloseException(String message, Throwable cause) {
+		super(message, null);
+	}
+	public CanNotCloseException(String message) {
+		super(message);
+	}
+	public CanNotCloseException(Throwable cause) {
+		super();
+	}
+}
+class AnyException extends Exception{
+	private static final long serialVersionUID = 1L;
+	public AnyException() {
+		super();
+	}
+	public AnyException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+	public AnyException(String message, Throwable cause) {
+		super(message, null);
+	}
+	public AnyException(String message) {
+		super(message);
+	}
+	public AnyException(Throwable cause) {
+		super();
+	}
+}

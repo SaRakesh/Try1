@@ -1,0 +1,253 @@
+Instances may exist in one of the following three states at a given point in time −
+
+transient − A new instance of a persistent class, which is not associated with a Session and has no representation in the database and no identifier value is considered transient by Hibernate.
+
+persistent − You can make a transient instance persistent by associating it with a Session. A persistent instance has a representation in the database, an identifier value and is associated with a Session.
+
+detached − Once we close the Hibernate Session, the persistent instance will become a detached instance.
+
+
+Session session = factory.openSession();
+Transaction tx = null;
+
+try {
+   tx = session.beginTransaction();
+   // do some work
+   ...
+   tx.commit();
+}
+
+catch (Exception e) {
+   if (tx!=null) tx.rollback();
+   e.printStackTrace(); 
+} finally {
+   session.close();
+}
+
+=============================================================================================
+1	
+Transaction beginTransaction()
+
+Begin a unit of work and return the associated Transaction object.
+
+2	
+void cancelQuery()
+
+Cancel the execution of the current query.
+
+3	
+void clear()
+
+Completely clear the session.
+
+4	
+Connection close()
+
+End the session by releasing the JDBC connection and cleaning up.
+
+5	
+Criteria createCriteria(Class persistentClass)
+
+Create a new Criteria instance, for the given entity class, or a superclass of an entity class.
+
+6	
+Criteria createCriteria(String entityName)
+
+Create a new Criteria instance, for the given entity name.
+
+7	
+Serializable getIdentifier(Object object)
+
+Return the identifier value of the given entity as associated with this session.
+
+8	
+Query createFilter(Object collection, String queryString)
+
+Create a new instance of Query for the given collection and filter string.
+
+9	
+Query createQuery(String queryString)
+
+Create a new instance of Query for the given HQL query string.
+
+10	
+SQLQuery createSQLQuery(String queryString)
+
+Create a new instance of SQLQuery for the given SQL query string.
+
+11	
+void delete(Object object)
+
+Remove a persistent instance from the datastore.
+
+12	
+void delete(String entityName, Object object)
+
+Remove a persistent instance from the datastore.
+
+13	
+Session get(String entityName, Serializable id)
+
+Return the persistent instance of the given named entity with the given identifier, or null if there is no such persistent instance.
+
+14	
+SessionFactory getSessionFactory()
+
+Get the session factory which created this session.
+
+15	
+void refresh(Object object)
+
+Re-read the state of the given instance from the underlying database.
+
+16	
+Transaction getTransaction()
+
+Get the Transaction instance associated with this session.
+
+17	
+boolean isConnected()
+
+Check if the session is currently connected.
+
+18	
+boolean isDirty()
+
+Does this session contain any changes which must be synchronized with the database?
+
+19	
+boolean isOpen()
+
+Check if the session is still open.
+
+20	
+Serializable save(Object object)
+
+Persist the given transient instance, first assigning a generated identifier.
+
+21	
+void saveOrUpdate(Object object)
+
+Either save(Object) or update(Object) the given instance.
+
+22	
+void update(Object object)
+
+Update the persistent instance with the identifier of the given detached instance.
+
+23	
+void update(String entityName, Object object)
+
+Update the persistent instance with the identifier of the given detached instance.
+
+========================================================================
+There are following main rules of persistent classes, however, none of these rules are hard requirements −
+
+All Java classes that will be persisted need a default constructor.
+
+All classes should contain an ID in order to allow easy identification of your objects within Hibernate and the database. This property maps to the primary key column of a database table.
+
+All attributes that will be persisted should be declared private and have getXXX and setXXX methods defined in the JavaBean style.
+
+A central feature of Hibernate, proxies, depends upon the persistent class being either non-final, or the implementation of an interface that declares all public methods.
+
+All classes that do not extend or implement some specialized classes and interfaces required by the EJB framework.
+
+
+====================================================================================
+Let us see understand a little detail about the mapping elements used in the mapping file −
+
+The mapping document is an XML document having <hibernate-mapping> as the root element, which contains all the <class> elements.
+
+The <class> elements are used to define specific mappings from a Java classes to the database tables. The Java class name is specified using the name attribute of the class element and the database table name is specified using the table attribute.
+
+The <meta> element is optional element and can be used to create the class description.
+
+The <id> element maps the unique ID attribute in class to the primary key of the database table. The name attribute of the id element refers to the property in the class and the column attribute refers to the column in the database table. The type attribute holds the hibernate mapping type, this mapping types will convert from Java to SQL data type.
+
+The <generator> element within the id element is used to generate the primary key values automatically. The class attribute of the generator element is set to native to let hibernate pick up either identity, sequence, or hilo algorithm to create primary key depending upon the capabilities of the underlying database.
+
+The <property> element is used to map a Java class property to a column in the database table. The name attribute of the element refers to the property in the class and the column attribute refers to the column in the database table. The type attribute holds the hibernate mapping type, this mapping types will convert from Java to SQL data type.
+
+
+example :
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "Employee" table = "EMPLOYEE">
+      
+      <meta attribute = "class-description">
+         This class contains the employee detail. 
+      </meta>
+      
+      <id name = "id" type = "int" column = "id">
+         <generator class="native"/>
+      </id>
+      
+      <property name = "firstName" column = "first_name" type = "string"/>
+      <property name = "lastName" column = "last_name" type = "string"/>
+      <property name = "salary" column = "salary" type = "int"/>
+      
+   </class>
+</hibernate-mapping>
+
+================================================================================================================
+
+Primitive Types
+Mapping type	Java type	ANSI SQL Type
+integer	int or java.lang.Integer	INTEGER
+long	long or java.lang.Long	BIGINT
+short	short or java.lang.Short	SMALLINT
+float	float or java.lang.Float	FLOAT
+double	double or java.lang.Double	DOUBLE
+big_decimal	java.math.BigDecimal	NUMERIC
+character	java.lang.String	CHAR(1)
+string	java.lang.String	VARCHAR
+byte	byte or java.lang.Byte	TINYINT
+boolean	boolean or java.lang.Boolean	BIT
+yes/no	boolean or java.lang.Boolean	CHAR(1) ('Y' or 'N')
+true/false	boolean or java.lang.Boolean	CHAR(1) ('T' or 'F')
+Date and Time Types
+Mapping type	Java type	ANSI SQL Type
+date	java.util.Date or java.sql.Date	DATE
+time	java.util.Date or java.sql.Time	TIME
+timestamp	java.util.Date or java.sql.Timestamp	TIMESTAMP
+calendar	java.util.Calendar	TIMESTAMP
+calendar_date	java.util.Calendar	DATE
+Binary and Large Object Types
+Mapping type	Java type	ANSI SQL Type
+binary	byte[]	VARBINARY (or BLOB)
+text	java.lang.String	CLOB
+serializable	any Java class that implements java.io.Serializable	VARBINARY (or BLOB)
+clob	java.sql.Clob	CLOB
+blob	java.sql.Blob	BLOB
+JDK-related Types
+Mapping type	Java type	ANSI SQL Type
+class	java.lang.Class	VARCHAR
+locale	java.util.Locale	VARCHAR
+timezone	java.util.TimeZone	VARCHAR
+currency	java.util.Currency	VARCHAR
+
+=================================================================================
+/* Method to UPDATE salary for an employee */
+   public void updateEmployee(Integer EmployeeID, int salary ){
+      Session session = factory.openSession();
+      Transaction tx = null;
+      
+      try {
+         tx = session.beginTransaction();
+         Employee employee = (Employee)session.get(Employee.class, EmployeeID); 
+         employee.setSalary( salary );
+		 session.update(employee); 
+         tx.commit();
+      } catch (HibernateException e) {
+         if (tx!=null) tx.rollback();
+         e.printStackTrace(); 
+      } finally {
+         session.close(); 
+      }
+   }
+====================================================================

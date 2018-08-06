@@ -1,0 +1,78 @@
+package com.eception;
+
+public class TryBlockSuppressed {
+	public static void main(String[] args) {
+		TryBlockSuppressed instance = new TryBlockSuppressed();
+		instance.process();
+	}
+
+	private void process() {
+		try(MyAutoCloseables autoCloseables = new MyAutoCloseables(new CommandClass())){
+			
+		}catch (CanNotCloseException e) {
+			System.out.println("catch block of Exception CanNotCloseException...");
+			System.out.println("exception msg  "+e.getMessage());
+			for (Throwable t : e.getSuppressed()) {
+				System.out.println("--- "+t.getMessage());
+			}
+		}catch (Exception e) {
+			System.out.println("catch block of Exception Exception...");
+			System.out.println("exception msg  "+e.getMessage());
+			for (Throwable t : e.getSuppressed()) {
+				System.out.println("+++ "+t.getMessage());
+			}
+		}finally {
+			System.out.println("finally block... ");
+		}
+		
+	}
+
+}
+class MyAutoCloseables implements AutoCloseable{
+
+	private CommandClass cmds;
+
+	public MyAutoCloseables(CommandClass cmds) {
+		super();
+		this.cmds = cmds;
+	}
+
+	@Override
+	public void close() throws Exception {
+		if(!cmds.canClose()) {
+			throw new CanNotCloseException();
+		}
+		System.out.println("Closing...");
+		
+	}
+	
+}
+class CommandClass{
+
+	public boolean canClose() {
+		
+	}
+	
+}
+class CanNotCloseException extends Exception{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8869492281617621629L;
+	public CanNotCloseException() {
+		super();
+	}
+	public CanNotCloseException(String message, Throwable cause, boolean enableSuppression,
+			boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+	public CanNotCloseException(String message, Throwable cause) {
+		super(message, null);
+	}
+	public CanNotCloseException(String message) {
+		super(message);
+	}
+	public CanNotCloseException(Throwable cause) {
+		super();
+	}
+}

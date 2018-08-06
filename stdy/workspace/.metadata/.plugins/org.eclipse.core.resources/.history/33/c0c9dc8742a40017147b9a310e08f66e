@@ -1,0 +1,40 @@
+package com.eception;
+
+import java.util.Scanner;
+
+public class TryBlockStudy {
+
+	public static void main(String[] args)  {
+		TryBlockStudy instance = new TryBlockStudy();
+		instance.process();
+	}
+
+	private void process() {
+		try(MyAutoCloseable autoCloseable = new MyAutoCloseable();
+				Scanner s = new Scanner(System.in)){
+			
+		}catch (Exception e) {
+			System.out.println("Catch Block");
+			System.out.println(e.getMessage());
+		}finally {
+			System.out.println("finally block");
+		}
+		
+	}
+}
+
+class MyAutoCloseable implements AutoCloseable{
+
+	@Override
+	public void close() throws Exception {
+		System.out.println("close function is running...");
+		
+	}
+	
+	public void doSomething() {
+		for(int i =0; i< 10; i++) {
+			System.out.println("Taj ...");
+		}
+	}
+	
+}
