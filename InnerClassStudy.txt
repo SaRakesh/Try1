@@ -1,0 +1,62 @@
+> You can use a construct called varargs to pass an arbitrary number of values to a method.
+public Polygon polygonFrom(Point... arguments) { }
+> arguments is treated like an array.
+
+> Creating Objects:
+Point originOne = new Point(23, 94);
+1. Declaration: "Point originOne " that associate a variable name with an object type.
+2. Instantiation: The new keyword is a Java operator that creates the object.
+3. Initialization: The new operator is followed by a call to a constructor, which initializes the new object.
+
+
+> Terminology: Nested classes are divided into two categories: static and non-static. Nested classes that are declared static are called
+ static nested classes. Non-static nested classes are called inner classes.
+ 
+ class OuterClass {
+    ...
+    static class StaticNestedClass {
+        ...
+    }
+    class InnerClass {
+        ...
+    }
+}
+
+> A nested class is a member of its enclosing class. Non-static nested classes (inner classes) have access to other members of the 
+enclosing class, even if they are declared private. Static nested classes do not have access to other members of the enclosing class. 
+As a member of the OuterClass, a nested class can be declared private, public, protected, or package private. 
+(Recall that outer classes can only be declared public or package private.)
+
+> to create an object for the static nested class, use this syntax:
+
+OuterClass.StaticNestedClass nestedObject =
+     new OuterClass.StaticNestedClass();
+> To instantiate an inner class, you must first instantiate the outer class. Then, create the inner object within the outer object with this syntax:
+
+OuterClass.InnerClass innerObject = outerObject.new InnerClass();
+
+> You can use the same modifiers for inner classes that you use for other members of the outer class. 
+For example, you can use the access specifiers private, public, and protected to restrict access to inner classes, 
+just as you use them to restrict access do to other class members.
+
+> A variable or parameter whose value is never changed after it is initialized is effectively final. 
+> local variables and parameters of the enclosing block that are final or effectively final.
+> You cannot declare an interface inside a block; interfaces are inherently static. 
+> Lambda expression have same access of  Enclosing class variable as local class. like it can access final or near to final variable. 
+it can't access static variable.
+
+> because the lambda expression does not introduce a new level of scoping. Consequently, 
+you can directly access fields, methods, and local variables of the enclosing scope. 
+For example, the lambda expression directly accesses the parameter x of the Enclosing class or method which are  final or effectively final.
+
+> "Arrays.sort(rosterAsArray, new PersonAgeComparator());" can be written as 
+Arrays.sort(rosterAsArray,
+    (a, b) -> Person.compareByAge(a, b)
+);
+
+it can also written as "Arrays.sort(rosterAsArray, Person::compareByAge);"
+this is call "Method References"
+
+> The method reference Person::compareByAge is a reference to a static method.
+> Reference to a constructor  Person::new 
+
