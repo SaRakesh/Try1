@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Build-Jdk-Spec: 10
+Implementation-Title: Strudy3
+Implementation-Version: 0.0.1-SNAPSHOT
+Main-Class: com.example.demo.Strudy3Application
+Created-By: Maven Integration for Eclipse
+
